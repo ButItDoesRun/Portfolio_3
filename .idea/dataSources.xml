@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="StudentsCourseRegistration.db" uuid="b35db233-90ba-4f00-a5fc-cd0e067af32b">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\s\Documents\RUC\Til OneDrive\Datalogi\Fagmodulskursus 2 - Software Development\Assignments - Portfolio\Portfolio 3\Portfolio_3\src\StudentsCourseRegistration.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
