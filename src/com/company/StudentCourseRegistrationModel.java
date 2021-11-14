@@ -1,14 +1,17 @@
 package com.company;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class StudentCourseRegistrationModel {
     Connection con = null;
     String url = null;
+    Statement stmt = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
 
     //sets the model to be an url (which in this case is the url for the Java Database Connector (JDBC))
+    //constructor
     StudentCourseRegistrationModel(String url){
         this.url = url;
     }
@@ -24,6 +27,31 @@ public class StudentCourseRegistrationModel {
             con.close();
         }
     }
+
+    public void CreateStatement() throws SQLException{
+        this.stmt = con.createStatement();
+    }
+
+
+    public ArrayList<String> TestSQLQueryStudents() throws SQLException{
+        ArrayList<String> students = new ArrayList<>();
+        System.out.println("got here");
+        java.lang.String sql = "SELECT firstName FROM Teacher";
+        System.out.println("got here2");
+        rs = stmt.executeQuery(sql);
+        System.out.println("got here3");
+
+        while(rs != null && rs.next()){
+            java.lang.String name = rs.getString(1);
+            System.out.println(name);
+
+            //adds sql-results to the array
+            students.add(name);
+        }
+        return students;
+    }
+
+
 
 }
 
