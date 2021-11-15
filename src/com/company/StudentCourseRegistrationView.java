@@ -19,6 +19,8 @@ public class StudentCourseRegistrationView {
 
     //buttons
     Button ExitBtn;
+    Button studentInfo;
+    Button courseInfo;
 
     //Comboboxes
     ComboBox<String> studentNameComB;
@@ -57,6 +59,8 @@ public class StudentCourseRegistrationView {
 
         //buttons
         ExitBtn = new Button("Exit");
+        studentInfo = new Button("Show student-information");
+        courseInfo = new Button("Show course-information");
 
         //combobox
         studentNameComB = new ComboBox<>();
@@ -72,13 +76,15 @@ public class StudentCourseRegistrationView {
 
         //buttons
         startview.add(ExitBtn, 20,20);
+        startview.add(studentInfo, 1,6);
+        startview.add(courseInfo, 1, 7);
 
         //combobox
         startview.add(studentNameComB,2,1);
         startview.add(courseIDComB, 2,2);
 
         //textfield
-        startview.add(textfield,1,7, 15,10);
+        startview.add(textfield,1,10, 15,10);
 
     }
 

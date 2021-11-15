@@ -33,35 +33,66 @@ public class StudentCourseRegistrationModel {
 
 
 
-
-    public ArrayList<String> TestSQLQueryStudents() throws SQLException{
+    //this method gets all studentNames from database
+    public ArrayList<String> SQLQueryStudents() throws SQLException{
         ArrayList<String> students = new ArrayList<>();
         //SQL query
         String sql = "SELECT name FROM Student";
-        //prints query-result in console
-        System.out.println(sql);
         //execute sql-query
         rs = stmt.executeQuery(sql);
 
         while(rs != null && rs.next()){
             String name = rs.getString(1);
-            System.out.println(name);
-
-            //adds sql-results to the array
+            //adds sql-result to the array
             students.add(name);
         }
         return students;
     }
 
+    //this method gets all courseIDs from database
+    public ArrayList<Integer> SQLQueryCourseIDs() throws SQLException{
+        ArrayList<Integer> courseIDs = new ArrayList<>();
+        //SQL query
+        String sql = "SELECT courseId FROM Course";
+        //execute sql-query
+        rs = stmt.executeQuery(sql);
+
+        while(rs != null && rs.next()){
+            //gets sql-result
+            Integer id = rs.getInt(1);
+            //adds sql-result to the array
+            courseIDs.add(id);
+        }
+        return courseIDs;
+    }
+
+
+
 
 
 }
 
-
 /*
-class SCRInfo{
+click a student and get all their courses, and grades. as well as the students average grade
+click a course and get all students and their average grade
+
+ */
+
+class StudentInfo{
     Integer studentID = null;
 
 }
 
- */
+class courseInfo{
+    Integer studentID = null;
+    String studentName = null;
+    Integer studentAverage = null;
+
+    courseInfo(Integer stuID, String stuName, Integer stuAvg){
+        this.studentID = stuID;
+        this.studentName = stuName;
+        this.studentAverage = stuAvg;
+    }
+
+}
+

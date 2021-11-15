@@ -45,6 +45,8 @@ public class StudentCourseRegistrationController {
 
         //students
         this.view.students = getStudents();
+        //courseIDs
+        this.view.courseIDs = getCourseIDs();
 
 
         //combobox configurations executed
@@ -54,9 +56,15 @@ public class StudentCourseRegistrationController {
 
 
     public ObservableList<String> getStudents() throws SQLException{
-        ArrayList<String> students = model.TestSQLQueryStudents();
+        ArrayList<String> students = model.SQLQueryStudents();
         ObservableList<String> studentNames = FXCollections.observableArrayList(students);
         return studentNames;
+    }
+
+    public ObservableList<Integer> getCourseIDs() throws SQLException{
+        ArrayList<Integer> courses = model.SQLQueryCourseIDs();
+        ObservableList<Integer> courseIds = FXCollections.observableArrayList(courses);
+        return courseIds;
     }
 
 }
