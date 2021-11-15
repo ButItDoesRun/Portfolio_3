@@ -3,6 +3,7 @@ package com.company;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -11,10 +12,13 @@ public class StudentCourseRegistrationView {
     GridPane startview;
 
     //Labels
-    Label studentFirstname;
+    Label studentName;
 
     //buttons
     Button ExitBtn;
+
+    //Combobox
+    ComboBox<String> studentNameComB;
 
 
 
@@ -37,17 +41,27 @@ public class StudentCourseRegistrationView {
 
         //----------------creates view-items-------------------------//
         //labels
-        studentFirstname = new Label("First Name");
+        studentName = new Label("Student");
 
         //buttons
         ExitBtn = new Button("Exit");
 
+        //combobox
+        studentNameComB = new ComboBox<>();
+
         //----------------adds view-items to view-------------------------//
         //labels
-        startview.add(studentFirstname, 1, 1);
+        startview.add(studentName, 1, 1);
 
         //buttons
         startview.add(ExitBtn, 20,20);
+
+        //combobox
+        startview.add(studentNameComB,2,1);
+
+    }
+
+    public void configureComBContent(){
 
     }
 

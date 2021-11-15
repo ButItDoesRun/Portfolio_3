@@ -28,7 +28,17 @@ public class StudentCourseRegistrationController {
 
         //-----------------------------------------------view commands-----------------------------------------//
         //exit button action
-        this.view.ExitBtn.setOnAction(e -> Platform.exit());
+        this.view.ExitBtn.setOnAction(e ->
+                {
+                    Platform.exit();
+                    try{
+                        model.closeDatabaseConnection();
+                        System.out.println("Connection closed");
+                    }catch(Exception b){
+                        System.out.println(b.getMessage());
+                    }
+
+                });
 
 
 

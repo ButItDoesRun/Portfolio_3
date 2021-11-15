@@ -37,7 +37,7 @@ public class StudentCourseRegistrationModel {
     public ArrayList<String> TestSQLQueryStudents() throws SQLException{
         ArrayList<String> students = new ArrayList<>();
         //SQL query
-        String sql = "SELECT firstName FROM Student";
+        String sql = "SELECT name FROM Student";
         //prints query-result in console
         System.out.println(sql);
         //execute sql-query
