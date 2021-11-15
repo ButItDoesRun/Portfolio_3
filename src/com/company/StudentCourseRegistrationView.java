@@ -1,5 +1,6 @@
 package com.company;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -17,8 +18,11 @@ public class StudentCourseRegistrationView {
     //buttons
     Button ExitBtn;
 
-    //Combobox
+    //Comboboxes
     ComboBox<String> studentNameComB;
+
+    //observable lists
+    ObservableList<String> students;
 
 
 
@@ -41,7 +45,7 @@ public class StudentCourseRegistrationView {
 
         //----------------creates view-items-------------------------//
         //labels
-        studentName = new Label("Student");
+        studentName = new Label("Choose a student");
 
         //buttons
         ExitBtn = new Button("Exit");
@@ -62,6 +66,10 @@ public class StudentCourseRegistrationView {
     }
 
     public void configureComBContent(){
+        //sets obslist "students" as comB content
+        studentNameComB.setItems(students);
+        //makes sure that the list is shown in the comB from the first item, and the rest
+        studentNameComB.getSelectionModel().selectFirst();
 
     }
 

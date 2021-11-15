@@ -1,8 +1,11 @@
 package com.company;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StudentCourseRegistrationController {
     StudentCourseRegistrationView view;
@@ -40,9 +43,20 @@ public class StudentCourseRegistrationController {
 
                 });
 
+        //students
+        this.view.students = getStudents();
 
 
+        //combobox configurations executed
+        this.view.configureComBContent();
 
+    }
+
+
+    public ObservableList<String> getStudents() throws SQLException{
+        ArrayList<String> students = model.TestSQLQueryStudents();
+        ObservableList<String> studentNames = FXCollections.observableArrayList(students);
+        return studentNames;
     }
 
 }
