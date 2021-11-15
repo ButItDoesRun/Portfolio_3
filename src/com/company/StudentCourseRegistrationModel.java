@@ -12,9 +12,7 @@ public class StudentCourseRegistrationModel {
 
     //sets the model to be an url (which in this case is the url for the Java Database Connector (JDBC))
     //constructor
-    StudentCourseRegistrationModel(String url){
-        this.url = url;
-    }
+    StudentCourseRegistrationModel(String url){this.url = url;}
 
     //method for connecting to the database
     public void connectToDatabase() throws SQLException {
@@ -28,21 +26,25 @@ public class StudentCourseRegistrationModel {
         }
     }
 
+
     public void CreateStatement() throws SQLException{
         this.stmt = con.createStatement();
     }
 
 
+
+
     public ArrayList<String> TestSQLQueryStudents() throws SQLException{
         ArrayList<String> students = new ArrayList<>();
         System.out.println("got here");
-        java.lang.String sql = "SELECT firstName FROM Teacher";
+        String sql = "SELECT firstName FROM Student";
+        System.out.println(sql);
         System.out.println("got here2");
         rs = stmt.executeQuery(sql);
         System.out.println("got here3");
 
         while(rs != null && rs.next()){
-            java.lang.String name = rs.getString(1);
+            String name = rs.getString(1);
             System.out.println(name);
 
             //adds sql-results to the array
