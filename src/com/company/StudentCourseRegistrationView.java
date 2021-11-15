@@ -2,16 +2,25 @@ package com.company;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class StudentCourseRegistrationView {
+    //variables
     GridPane startview;
+
+    //Labels
+    Label studentFirstname;
+
+    //buttons
+
 
 
     //constructor
     public StudentCourseRegistrationView(){
         //creates a new view
         startview = new GridPane();
+        CreateView();
     }
 
 
@@ -22,6 +31,16 @@ public class StudentCourseRegistrationView {
         startview.setPadding(new Insets(10,10,10,10));
         startview.setHgap(5);
         startview.setVgap(5);
+
+
+        //creates new labels
+        studentFirstname = new Label("First Name");
+
+        //adds new labels to view
+        startview.add(studentFirstname, 1, 1);
+
+
+
     }
 
 
