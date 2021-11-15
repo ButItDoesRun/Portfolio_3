@@ -2,6 +2,7 @@ package com.company;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -13,6 +14,7 @@ public class StudentCourseRegistrationView {
     Label studentFirstname;
 
     //buttons
+    Button ExitBtn;
 
 
 
@@ -33,13 +35,19 @@ public class StudentCourseRegistrationView {
         startview.setVgap(5);
 
 
-        //creates new labels
+        //----------------creates view-items-------------------------//
+        //labels
         studentFirstname = new Label("First Name");
 
-        //adds new labels to view
+        //buttons
+        ExitBtn = new Button("Exit");
+
+        //----------------adds view-items to view-------------------------//
+        //labels
         startview.add(studentFirstname, 1, 1);
 
-
+        //buttons
+        startview.add(ExitBtn, 20,20);
 
     }
 

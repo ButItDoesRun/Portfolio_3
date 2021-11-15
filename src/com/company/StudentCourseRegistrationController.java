@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.application.Platform;
+
 import java.sql.SQLException;
 
 public class StudentCourseRegistrationController {
@@ -20,11 +22,13 @@ public class StudentCourseRegistrationController {
         //create a statement
         this.model.CreateStatement();
 
-        //get resultset from query
+        //get result-set from query
         this.model.TestSQLQueryStudents();
 
 
         //-----------------------------------------------view commands-----------------------------------------//
+        //exit button action
+        this.view.ExitBtn.setOnAction(e -> Platform.exit());
 
 
 

@@ -33,22 +33,21 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
 
+
         //create scene
         primaryStage.setScene(new Scene(SCRView.asParent(), 600, 475));
         primaryStage.setTitle("Student Course Registration");
         primaryStage.show();
 
-        /*
-        finally {
-            try{
-                //con.close();
-                SCRModel.closeDatabaseConnection();
-            }catch(SQLException e2){
-                System.out.println(e2.getMessage());
-            }
-        }
-
-         */
+        //close database connection if view is closed
+        primaryStage.setOnCloseRequest(e ->
+        {try{
+            //close connection
+            SCRModel.closeDatabaseConnection();
+            System.out.println("Connection closed");
+        }catch(Exception a){
+            System.out.println(a.getMessage());
+        }});
 
     }
 
