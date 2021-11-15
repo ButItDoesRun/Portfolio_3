@@ -23,17 +23,12 @@ public class Main extends Application {
         //make new model
         StudentCourseRegistrationModel SCRModel = new StudentCourseRegistrationModel(url);
 
+        //make variable name for new controller
+        StudentCourseRegistrationController SCRController = null;
+
         try{
-
-            //establish connection
-            SCRModel.connectToDatabase();
-
-            //create a statement
-            SCRModel.CreateStatement();
-
-            //get resultset from query
-            SCRModel.TestSQLQueryStudents();
-
+            //make a new controller
+            SCRController =new StudentCourseRegistrationController(SCRView, SCRModel);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
