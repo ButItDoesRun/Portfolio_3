@@ -1,15 +1,26 @@
 package com.company;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.sql.SQLException;
 import java.sql.*;
 
-public class Main {
+public class Main extends Application {
 
-    public static void main(String[] args) {
+    //my javaFX stage
+    public void start(Stage primaryStage){
         //use url from database-location and fix all \\ to /
         String url ="jdbc:sqlite:C:/Users/s/Documents/RUC/Til OneDrive/Datalogi/" +
                 "Fagmodulskursus 2 - Software Development/Assignments - Portfolio/" +
                 "Portfolio 3/Portfolio_3/src/StudentsCourseRegistration.db";
+
+
+        //make new view
+        StudentCourseRegistrationView SCRView = new StudentCourseRegistrationView();
+
+        //make new model
         StudentCourseRegistrationModel SCRModel = new StudentCourseRegistrationModel(url);
 
         try{
@@ -20,15 +31,17 @@ public class Main {
             //create a statement
             SCRModel.CreateStatement();
 
-            System.out.println("here i am");
-
             //get resultset from query
             SCRModel.TestSQLQueryStudents();
-            System.out.println("here i am2");
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
+
+        //create scene
+        primaryStage.setScene(new Scene(SCRView.asParent(), 600, 475));
+        primaryStage.setTitle("Student Course Registration");
+        primaryStage.show();
 
         /*
         finally {
@@ -42,5 +55,10 @@ public class Main {
 
          */
 
+    }
+
+    //launching my code from main
+    public static void main(String[] args) {
+        launch(args);
     }
 }
