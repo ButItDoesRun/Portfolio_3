@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
 public class StudentCourseRegistrationView {
@@ -13,16 +14,22 @@ public class StudentCourseRegistrationView {
     GridPane startview;
 
     //Labels
-    Label studentName;
+    Label chooseStudent;
+    Label chooseCourse;
 
     //buttons
     Button ExitBtn;
 
     //Comboboxes
     ComboBox<String> studentNameComB;
+    ComboBox<Integer> courseIDComB;
+
+    //textfield
+    TextArea textfield;
 
     //observable lists
     ObservableList<String> students;
+    ObservableList<Integer> courseIDs;
 
 
 
@@ -45,23 +52,33 @@ public class StudentCourseRegistrationView {
 
         //----------------creates view-items-------------------------//
         //labels
-        studentName = new Label("Choose a student");
+        chooseStudent = new Label("Choose a student");
+        chooseCourse = new Label("Choose a course");
 
         //buttons
         ExitBtn = new Button("Exit");
 
         //combobox
         studentNameComB = new ComboBox<>();
+        courseIDComB = new ComboBox<>();
+
+        //textfield
+        textfield = new TextArea();
 
         //----------------adds view-items to view-------------------------//
         //labels
-        startview.add(studentName, 1, 1);
+        startview.add(chooseStudent, 1, 1);
+        startview.add(chooseCourse, 1, 2);
 
         //buttons
         startview.add(ExitBtn, 20,20);
 
         //combobox
         startview.add(studentNameComB,2,1);
+        startview.add(courseIDComB, 2,2);
+
+        //textfield
+        startview.add(textfield,1,7, 15,10);
 
     }
 
@@ -70,6 +87,10 @@ public class StudentCourseRegistrationView {
         studentNameComB.setItems(students);
         //makes sure that the list is shown in the comB from the first item, and the rest
         studentNameComB.getSelectionModel().selectFirst();
+
+        //courses
+        courseIDComB.setItems(courseIDs);
+        courseIDComB.getSelectionModel().selectFirst();
 
     }
 

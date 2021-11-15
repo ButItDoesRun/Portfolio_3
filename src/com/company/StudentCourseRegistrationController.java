@@ -26,7 +26,7 @@ public class StudentCourseRegistrationController {
         this.model.CreateStatement();
 
         //get result-set from query
-        this.model.TestSQLQueryStudents();
+        //this.model.TestSQLQueryStudents();
 
 
         //-----------------------------------------------view commands-----------------------------------------//
