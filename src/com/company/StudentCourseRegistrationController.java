@@ -3,6 +3,7 @@ package com.company;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TextArea;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,6 +49,9 @@ public class StudentCourseRegistrationController {
         //courseIDs
         this.view.courseIDs = getCourseIDs();
 
+        //courseInfo button action
+        this.view.courseInfo.setOnAction(e -> HandleCourseInfoPrint(view.courseIDComB.getValue(), view.textfield));
+
 
         //combobox configurations executed
         this.view.configureComBContent();
@@ -65,6 +69,26 @@ public class StudentCourseRegistrationController {
         ArrayList<Integer> courses = model.SQLQueryCourseIDs();
         ObservableList<Integer> courseIds = FXCollections.observableArrayList(courses);
         return courseIds;
+    }
+
+
+    public void HandleCourseInfoPrint(Integer courseID, TextArea textfield){
+        //clear textfield
+        textfield.clear();
+        //headline studentNames from this course
+        textfield.appendText("Students participating in this course: \n");
+        try{
+            ArrayList<CourseInfo> CInfo = model.SQLQueryCourseInfo(courseID);
+            for(int i = 0; i < CInfo.size(); i++){
+                textfield.appendText("StudentID: " + CInfo.get(i).studentID
+                        + " -----> " + CInfo.get(i).studentName + "\n");
+            }
+            textfield.appendText("\nAverage course grade: ");
+            model.SQLQueryCourseAverage(courseID);
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }
