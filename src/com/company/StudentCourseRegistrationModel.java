@@ -95,6 +95,23 @@ public class StudentCourseRegistrationModel {
         return studentInfos;
     }
 
+    public String SQLQueryStudentAverage(String studentName) throws SQLException{
+        String sql = "SELECT AVG(grade) AS AVG From Grade JOIN Student S on Grade.stuID = S.studentID " +
+                "Where s.name = ?;";
+
+        //create a prepared-statement
+        pstmt = con.prepareStatement(sql);
+        //insert parameter
+        pstmt.setString(1, studentName);
+        //execute query
+        rs = pstmt.executeQuery();
+
+        //get result
+        String Average = rs.getString("AVG");
+
+        return Average;
+    }
+
     public ArrayList<CourseInfo> SQLQueryCourseInfo(Integer courseID) throws SQLException{
         ArrayList<CourseInfo> courseInfos = new ArrayList<>();
 

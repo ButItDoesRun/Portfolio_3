@@ -85,7 +85,8 @@ public class StudentCourseRegistrationController {
             for(int i = 0; i < SInfo.size(); i++){
                 textfield.appendText("Course: " + SInfo.get(i).courseName + ", Grade -->" + SInfo.get(i).grade + "\n");
             }
-            textfield.appendText("\nGrade Average: ");
+            textfield.appendText("\nGrade Average: " + model.SQLQueryStudentAverage(studentName));
+            //textfield.appendText(model.SQLQueryStudentAverage(studentName));
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
