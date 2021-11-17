@@ -95,8 +95,8 @@ public class StudentCourseRegistrationModel {
         return courseInfos;
     }
 
-    public Average SQLQueryCourseAverage(Integer courseID) throws SQLException{
-        String sql = "SELECT AVG(grade) AS AVG From Grade Where couID = ?;";
+    public String SQLQueryCourseAverage(Integer courseID) throws SQLException{
+        String sql = "SELECT IFNULL(AVG(grade), 'Not graded') AS Average From Grade Where couID = ?;";
 
         //create a prepared-statement
         pstmt = con.prepareStatement(sql);
@@ -106,21 +106,9 @@ public class StudentCourseRegistrationModel {
         rs = pstmt.executeQuery();
 
         //get result
-        Double Average = rs.getDouble("AVG");
+        String Average = rs.getString("Average");
 
-        Average AVG = new Average(Average);
-
-
-        if(AVG != null){
-            System.out.println(AVG);
-            return AVG;
-        }else if(AVG == null){
-            AVG = new Average("No current average");
-            System.out.println(AVG);
-            return AVG;
-        }
-
-        return AVG;
+        return Average;
     }
 
 
@@ -155,14 +143,5 @@ class CourseInfo{
         this.studentName = stuName;
     }
 
-}
-
-
-class Average<T>{
-    T Average = null;
-
-    Average(T AVG){
-        this.Average = AVG;
-    }
 }
 

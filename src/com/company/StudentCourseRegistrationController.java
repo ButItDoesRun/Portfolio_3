@@ -83,8 +83,7 @@ public class StudentCourseRegistrationController {
                 textfield.appendText("StudentID: " + CInfo.get(i).studentID
                         + " -----> " + CInfo.get(i).studentName + "\n");
             }
-            textfield.appendText("\nAverage course grade: ");
-            model.SQLQueryCourseAverage(courseID);
+            textfield.appendText("\nCourse Average: " + model.SQLQueryCourseAverage(courseID));
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
