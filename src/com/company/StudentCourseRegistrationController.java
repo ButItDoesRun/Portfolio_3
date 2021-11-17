@@ -52,6 +52,9 @@ public class StudentCourseRegistrationController {
         //courseInfo button action
         this.view.courseInfo.setOnAction(e -> HandleCourseInfoPrint(view.courseIDComB.getValue(), view.textfield));
 
+        //studentIfo button action
+        this.view.studentInfo.setOnAction(e -> HandleStudentInfoPrint(view.studentNameComB.getValue(), view.textfield));
+
 
         //combobox configurations executed
         this.view.configureComBContent();
@@ -69,6 +72,24 @@ public class StudentCourseRegistrationController {
         ArrayList<Integer> courses = model.SQLQueryCourseIDs();
         ObservableList<Integer> courseIds = FXCollections.observableArrayList(courses);
         return courseIds;
+    }
+
+
+    public void HandleStudentInfoPrint(String studentName, TextArea textfield){
+        //clear textfield
+        textfield.clear();
+        //headline studentNames from this course
+        textfield.appendText(studentName + "'s courses and grades are: \n");
+        try{
+            ArrayList<StudentInfo> SInfo = model.SQLQueryStudentInfo(studentName);
+            for(int i = 0; i < SInfo.size(); i++){
+                textfield.appendText("Course: " + SInfo.get(i).courseName + ", Grade -->" + SInfo.get(i).grade + "\n");
+            }
+            textfield.appendText("\nGrade Average: ");
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 

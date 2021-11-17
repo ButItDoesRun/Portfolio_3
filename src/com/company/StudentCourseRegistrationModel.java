@@ -68,6 +68,33 @@ public class StudentCourseRegistrationModel {
         return courseIDs;
     }
 
+    public ArrayList<StudentInfo> SQLQueryStudentInfo(String studentName) throws SQLException{
+        ArrayList<StudentInfo> studentInfos = new ArrayList<>();
+        String sql = "SELECT courseName AS CN, IFNULL(grade, 'No current grade!') AS G " +
+                "FROM Course JOIN Grade AS G2 on Course.courseId = G2.couID, " +
+                "Student AS S WHERE G2.stuID = S.studentID AND S.name = ?;";
+
+        //create a prepared-statement
+        pstmt = con.prepareStatement(sql);
+        //insert parameter
+        pstmt.setString(1, studentName);
+        rs = pstmt.executeQuery();
+
+        while(rs != null && rs.next()){
+            //get result
+            String cName = rs.getString("CN");
+            String grade = rs.getString("G");
+
+            //insert result into class an object
+            StudentInfo SI = new StudentInfo(cName, grade);
+
+            //add object to returnable array
+            studentInfos.add(SI);
+        }
+
+        return studentInfos;
+    }
+
     public ArrayList<CourseInfo> SQLQueryCourseInfo(Integer courseID) throws SQLException{
         ArrayList<CourseInfo> courseInfos = new ArrayList<>();
 
@@ -125,9 +152,9 @@ click a course and get all students and the course average grade
 
 class StudentInfo{
     String courseName = null;
-    Types grade = null;
+    String grade = null;
 
-    StudentInfo(String couName, Types grad){
+    StudentInfo(String couName, String grad){
         this.courseName = couName;
         this.grade = grad;
     }
