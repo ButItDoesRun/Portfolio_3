@@ -50,10 +50,10 @@ public class StudentCourseRegistrationController {
         this.view.courseIDs = getCourseIDs();
 
         //courseInfo button action
-        this.view.courseInfo.setOnAction(e -> HandleCourseInfoPrint(view.courseIDComB.getValue(), view.textfield));
+        this.view.courseInfo.setOnAction(e -> HandleCourseInfoPrint(view.courseIDComB.getValue(), view.courseTextfield));
 
         //studentIfo button action
-        this.view.studentInfo.setOnAction(e -> HandleStudentInfoPrint(view.studentNameComB.getValue(), view.textfield));
+        this.view.studentInfo.setOnAction(e -> HandleStudentInfoPrint(view.studentNameComB.getValue(), view.studentTextfield));
 
 
         //combobox configurations executed

@@ -27,7 +27,8 @@ public class StudentCourseRegistrationView {
     ComboBox<Integer> courseIDComB;
 
     //textfield
-    TextArea textfield;
+    TextArea studentTextfield;
+    TextArea courseTextfield;
 
     //observable lists
     ObservableList<String> students;
@@ -67,24 +68,26 @@ public class StudentCourseRegistrationView {
         courseIDComB = new ComboBox<>();
 
         //textfield
-        textfield = new TextArea();
+        studentTextfield = new TextArea();
+        courseTextfield = new TextArea();
 
         //----------------adds view-items to view-------------------------//
         //labels
         startview.add(chooseStudent, 1, 1);
-        startview.add(chooseCourse, 1, 2);
+        startview.add(chooseCourse, 1, 12);
 
         //buttons
-        startview.add(ExitBtn, 20,20);
-        startview.add(studentInfo, 1,6);
-        startview.add(courseInfo, 1, 7);
+        startview.add(ExitBtn, 21,20);
+        startview.add(studentInfo, 20,3);
+        startview.add(courseInfo, 20, 14);
 
         //combobox
         startview.add(studentNameComB,2,1);
-        startview.add(courseIDComB, 2,2);
+        startview.add(courseIDComB, 2,12);
 
         //textfield
-        startview.add(textfield,1,10, 15,10);
+        startview.add(studentTextfield,1,4, 20,2);
+        startview.add(courseTextfield, 1, 15, 20, 2);
 
     }
 
