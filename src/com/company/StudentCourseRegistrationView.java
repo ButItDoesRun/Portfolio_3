@@ -105,8 +105,7 @@ public class StudentCourseRegistrationView {
     }
 
 
-    //returns the view - note that the method needs the "asParent()" because a view needs a parent to work
-    //therefore what we are doing here is basically typecasting the method into being the Parent
+    //returns the view typecast as Parent
     public Parent asParent(){
         return startview;
     }

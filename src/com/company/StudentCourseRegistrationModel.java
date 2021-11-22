@@ -1,7 +1,5 @@
 package com.company;
 
-import javafx.scene.control.TextArea;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -28,7 +26,6 @@ public class StudentCourseRegistrationModel {
         }
     }
 
-
     public void CreateStatement() throws SQLException{
         this.stmt = con.createStatement();
     }
@@ -51,26 +48,33 @@ public class StudentCourseRegistrationModel {
         return students;
     }
 
-    //this method gets all courseIDs from database
-    public ArrayList<Integer> SQLQueryCourseIDs() throws SQLException{
-        ArrayList<Integer> courseIDs = new ArrayList<>();
+    //this method gets names, id and year for all courses from database
+    public ArrayList<Course> SQLQueryCourses() throws SQLException{
+        ArrayList<Course> courseIDs = new ArrayList<>();
         //SQL query
-        String sql = "SELECT courseId FROM Course";
+        String sql = "SELECT courseId AS Id, courseName AS CN, year AS Y FROM Course";
         //execute sql-query
         rs = stmt.executeQuery(sql);
 
         while(rs != null && rs.next()){
             //gets sql-result
-            Integer id = rs.getInt(1);
+            Integer id = rs.getInt("Id");
+            String cName = rs.getString("CN");
+            Integer year = rs.getInt("Y");
+
             //adds sql-result to the array
-            courseIDs.add(id);
+            Course courses = new Course(cName, id, year);
+
+            //add object to returnable array
+            courseIDs.add(courses);
         }
         return courseIDs;
     }
 
+    //this method gets a students courses and grades from database based the parameter "studentName"
     public ArrayList<StudentInfo> SQLQueryStudentInfo(String studentName) throws SQLException{
         ArrayList<StudentInfo> studentInfos = new ArrayList<>();
-        String sql = "SELECT courseName AS CN, IFNULL(grade, 'No current grade!') AS G " +
+        String sql = "SELECT courseName AS CN, IFNULL(grade, 'Not graded') AS G " +
                 "FROM Course JOIN Grade AS G2 on Course.courseId = G2.couID, " +
                 "Student AS S WHERE G2.stuID = S.studentID AND S.name = ?;";
 
@@ -95,6 +99,7 @@ public class StudentCourseRegistrationModel {
         return studentInfos;
     }
 
+    //this method gets a students average from database based on the parameter "studentName"
     public String SQLQueryStudentAverage(String studentName) throws SQLException{
         String sql = "SELECT AVG(grade) AS AVG From Grade JOIN Student S on Grade.stuID = S.studentID " +
                 "Where s.name = ?;";
@@ -112,6 +117,7 @@ public class StudentCourseRegistrationModel {
         return Average;
     }
 
+    //this method gets all students attending a course from database based on the parameter "courseID"
     public ArrayList<CourseInfo> SQLQueryCourseInfo(Integer courseID) throws SQLException{
         ArrayList<CourseInfo> courseInfos = new ArrayList<>();
 
@@ -131,7 +137,7 @@ public class StudentCourseRegistrationModel {
             String studentName = rs.getString("N");
 
             //insert result into class an object
-            CourseInfo CI = new CourseInfo(ID,studentName);
+            CourseInfo CI = new CourseInfo(ID, studentName);
 
             //add object to returnable array
             courseInfos.add(CI);
@@ -139,6 +145,7 @@ public class StudentCourseRegistrationModel {
         return courseInfos;
     }
 
+    //this method gets a course's average from database based on the parameter "courseID"
     public String SQLQueryCourseAverage(Integer courseID) throws SQLException{
         String sql = "SELECT IFNULL(AVG(grade), 'Not graded') AS Average From Grade Where couID = ?;";
 
@@ -161,11 +168,19 @@ public class StudentCourseRegistrationModel {
 
 }
 
-/*
-click a student and get all their courses, and grades. as well as the students average grade
-click a course and get all students and the course average grade
+//-----------------------classes for making returnable objects based on SQL-Queries -------------------------//
 
- */
+class Course{
+    String courseName = null;
+    Integer courseId = null;
+    Integer courseYear = null;
+
+    Course(String couName, Integer courseId, Integer couYear){
+        this.courseName = couName;
+        this.courseId = courseId;
+        this.courseYear = couYear;
+    }
+}
 
 class StudentInfo{
     String courseName = null;

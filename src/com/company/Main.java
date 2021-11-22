@@ -34,7 +34,7 @@ public class Main extends Application {
         }
 
 
-        //create scene
+        //configurations for stage
         primaryStage.setScene(new Scene(SCRView.asParent(), 600, 475));
         primaryStage.setTitle("Student Course Registration");
         primaryStage.show();
@@ -51,7 +51,7 @@ public class Main extends Application {
 
     }
 
-    //launching my code from main
+    //launching code from main
     public static void main(String[] args) {
         launch(args);
     }
