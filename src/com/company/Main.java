@@ -28,7 +28,7 @@ public class Main extends Application {
 
         try{
             //make a new controller
-            SCRController =new StudentCourseRegistrationController(SCRView, SCRModel);
+            SCRController = new StudentCourseRegistrationController(SCRView, SCRModel);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }

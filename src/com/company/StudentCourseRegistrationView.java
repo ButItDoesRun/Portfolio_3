@@ -92,7 +92,8 @@ public class StudentCourseRegistrationView {
         //sets obslist "students" as comB content
         studentNameComB.setItems(students);
         //makes sure that the list is shown in the comB from the first item, and the rest
-        studentNameComB.getSelectionModel().selectFirst();
+        //studentNameComB.getSelectionModel().selectFirst();
+        studentNameComB.getSelectionModel();
 
         //courses
         courseIDComB.setItems(courseIDs);
